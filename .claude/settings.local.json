@@ -11,7 +11,13 @@
       "Bash(./.venv/Scripts/python.exe -m demo.run_demo)",
       "Bash(./.venv/Scripts/python.exe -m pip install --quiet openpyxl fastapi \"uvicorn[standard]\" pytest)",
       "Bash(./.venv/Scripts/python.exe -m pytest -q)",
-      "Bash(./.venv/Scripts/python.exe -m pytest -q tests/test_excel.py)"
+      "Bash(./.venv/Scripts/python.exe -m pytest -q tests/test_excel.py)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet sqlmodel)",
+      "Bash(./.venv/Scripts/python.exe -c \"import sqlmodel; print\\('sqlmodel', sqlmodel.__version__\\)\")",
+      "Bash(mkdir -p app/services app/db)",
+      "Bash(./.venv/Scripts/python.exe -m pytest -q tests/test_persistence.py)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet httpx)",
+      "Bash(./.venv/Scripts/python.exe -c ' *)"
     ]
   }
 }

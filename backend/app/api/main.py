@@ -10,19 +10,34 @@ Run:  uvicorn app.api.main:app --reload   (from backend/)
 from __future__ import annotations
 
 import tempfile
+from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
+from pydantic import BaseModel
+from sqlmodel import Session, select
 
+from app.db import get_session, init_db
 from app.io import excel
+from app.models.tables import School, TimetableEntry, TimetableVersion
 from app.scheduler.engine import Solution, TimetableEngine
 from app.scheduler.problem import Problem
+from app.services import scheduling
+from app.services.seed import seed_demo_school
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    init_db()
+    yield
+
 
 app = FastAPI(
     title="SAS — SSAPS Academic Scheduler",
-    version="0.1.0",
-    description="AI-powered timetable generation engine (Phase 1 MVP).",
+    version="0.2.0",
+    description="AI-powered timetable generation engine with persisted, versioned "
+                "timetables (Phase 1–2).",
+    lifespan=lifespan,
 )
 
 
@@ -104,3 +119,118 @@ async def _problem_from_upload(file: UploadFile) -> Problem:
     tmp = Path(tempfile.gettempdir()) / "sas_upload.xlsx"
     tmp.write_bytes(data)
     return excel.read_problem(tmp)
+
+
+# ===========================================================================
+# Persisted, versioned timetables (DB-backed)
+# ===========================================================================
+class GenerateRequest(BaseModel):
+    label: str = "draft"
+    seed: int = 42
+    max_seconds: float = 20.0
+
+
+class RepairRequest(BaseModel):
+    unlock: list[str] = []           # lesson ids to free; everything else stays pinned
+    max_seconds: float = 20.0
+
+
+def _version_summary(v: TimetableVersion) -> dict:
+    return {
+        "id": v.id, "school_id": v.school_id, "label": v.label, "status": v.status,
+        "solver_status": v.solver_status, "score": v.score, "seed": v.seed,
+        "solve_seconds": v.solve_seconds, "created_at": v.created_at.isoformat(),
+    }
+
+
+@app.post("/schools/seed-demo")
+def seed_demo(session: Session = Depends(get_session)) -> dict:
+    """Create a ready-to-schedule demo school; returns its id."""
+    sid = seed_demo_school(session)
+    return {"school_id": sid, "message": "Demo school seeded. POST /schools/{id}/generate next."}
+
+
+@app.get("/schools")
+def list_schools(session: Session = Depends(get_session)) -> list[dict]:
+    schools = session.exec(select(School)).all()
+    return [{"id": s.id, "name": s.name} for s in schools]
+
+
+@app.post("/schools/{school_id}/generate")
+def generate_for_school(school_id: int, req: GenerateRequest = GenerateRequest(),
+                        session: Session = Depends(get_session)) -> JSONResponse:
+    """Generate a timetable for a school and persist it as a new version."""
+    if session.get(School, school_id) is None:
+        raise HTTPException(404, f"School {school_id} not found")
+    version, solution = scheduling.generate_version(
+        session, school_id, label=req.label, seed=req.seed, max_seconds=req.max_seconds)
+    if version is None:
+        return JSONResponse(status_code=422, content={
+            "ok": False, "status": solution.status, "diagnosis": solution.diagnosis})
+    return JSONResponse({
+        "ok": True, "version": _version_summary(version),
+        "score_breakdown": [
+            {"rule": s.rule, "points": s.points, "detail": s.detail}
+            for s in solution.score_breakdown],
+    })
+
+
+@app.get("/schools/{school_id}/versions")
+def list_versions(school_id: int, session: Session = Depends(get_session)) -> list[dict]:
+    versions = session.exec(
+        select(TimetableVersion)
+        .where(TimetableVersion.school_id == school_id)
+        .order_by(TimetableVersion.created_at.desc())
+    ).all()
+    return [_version_summary(v) for v in versions]
+
+
+@app.get("/versions/{version_id}")
+def get_version(version_id: int, session: Session = Depends(get_session)) -> dict:
+    version = session.get(TimetableVersion, version_id)
+    if version is None:
+        raise HTTPException(404, f"Version {version_id} not found")
+    school = session.get(School, version.school_id)
+    days = [d.strip() for d in school.days_csv.split(",")]
+    ppd = school.periods_per_day
+    entries = session.exec(
+        select(TimetableEntry).where(TimetableEntry.version_id == version_id)
+    ).all()
+    return {
+        "version": _version_summary(version),
+        "grid": {"days": days, "periods_per_day": ppd},
+        "entries": [
+            {
+                "class_id": e.klass_code, "subject": e.subject,
+                "teacher_id": e.teacher_code, "start_slot": e.start_slot,
+                "day": e.start_slot // ppd, "period": e.start_slot % ppd,
+                "length": e.length, "lab_kind": e.lab_kind,
+            }
+            for e in entries
+        ],
+    }
+
+
+@app.post("/versions/{version_id}/publish")
+def publish(version_id: int, session: Session = Depends(get_session)) -> dict:
+    try:
+        version = scheduling.publish_version(session, version_id)
+    except ValueError as e:
+        raise HTTPException(404, str(e))
+    return {"ok": True, "version": _version_summary(version)}
+
+
+@app.post("/versions/{version_id}/repair")
+def repair(version_id: int, req: RepairRequest = RepairRequest(),
+           session: Session = Depends(get_session)) -> JSONResponse:
+    """Auto-repair: re-solve, keeping every cell pinned except `unlock`. Saves a
+    new version so the original is never mutated."""
+    try:
+        version, solution = scheduling.repair_version(
+            session, version_id, unlock=set(req.unlock), max_seconds=req.max_seconds)
+    except ValueError as e:
+        raise HTTPException(404, str(e))
+    if version is None:
+        return JSONResponse(status_code=422, content={
+            "ok": False, "status": solution.status, "diagnosis": solution.diagnosis})
+    return JSONResponse({"ok": True, "version": _version_summary(version)})

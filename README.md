@@ -34,31 +34,50 @@ python -m demo.run_demo
 
 # 2) Run the API
 uvicorn app.api.main:app --reload
+#   Stateless (Excel in / JSON or Excel out):
 #   GET  /health
-#   GET  /timetable/template        -> download a blank import workbook
-#   POST /timetable/generate        -> upload workbook, get JSON timetable
-#   POST /timetable/export          -> upload workbook, download formatted .xlsx
-#   POST /timetable/generate-demo   -> run the demo, no upload
+#   GET  /timetable/template            -> download a blank import workbook
+#   POST /timetable/generate            -> upload workbook, get JSON timetable
+#   POST /timetable/export              -> upload workbook, download formatted .xlsx
+#   POST /timetable/generate-demo       -> run the demo, no upload
+#
+#   Persisted & versioned (DB-backed):
+#   POST /schools/seed-demo             -> create a demo school, returns id
+#   POST /schools/{id}/generate         -> solve + save a new timetable version
+#   GET  /schools/{id}/versions         -> list versions (score, status, seed)
+#   GET  /versions/{id}                 -> version metadata + all entries
+#   POST /versions/{id}/publish         -> publish (demotes prior published)
+#   POST /versions/{id}/repair          -> auto-repair: re-solve, keep pinned cells
 
 # 3) Tests
 python -m pytest -q
 ```
 
+A typical DB-backed flow: `seed-demo` → `generate` → `publish`; after a manual
+change, `repair` with the freed lesson ids re-solves only those cells and saves a
+new version, leaving the original untouched. The store defaults to SQLite
+(`backend/sas.db`); set `SAS_DATABASE_URL` to a PostgreSQL DSN for production.
+
 ## Architecture
 
 ```
-Excel (import)  ─┐
-                 ├─►  Problem (pure data)  ─►  CP-SAT Engine  ─►  Solution ─┬─► JSON API
-DB / API (later)─┘         problem.py            engine.py                  ├─► Excel export
-                                                                            └─► conflict verifier
+Excel (import) ─┐                                              ┌─► JSON API
+                ├─► Problem (pure data) ─► CP-SAT Engine ─► Solution ─┼─► Excel export
+DB (PostgreSQL)─┘        problem.py           engine.py              ├─► conflict verifier
+      ▲                                                              │
+      └───────────────  versioned snapshots  ──────────────────────┘
 ```
 
 - `app/scheduler/problem.py` — pure dataclass model of a scheduling problem.
 - `app/scheduler/engine.py` — CP-SAT solver: hard constraints, soft objective,
   score explanation, feasibility diagnosis, locked-cell repair.
 - `app/scheduler/render.py` — independent conflict verifier + text renderers.
+- `app/models/tables.py` — multi-tenant SQLModel schema (system of record).
+- `app/db.py` — SQLite (dev) / PostgreSQL (prod) bootstrap via `SAS_DATABASE_URL`.
+- `app/services/` — DB↔engine mapping, generation + **versioning** (generate,
+  publish, auto-repair), demo seed.
 - `app/io/excel.py` — the **only** Excel touchpoint (import/export/template).
-- `app/api/main.py` — thin FastAPI surface.
+- `app/api/main.py` — thin FastAPI surface (stateless + DB-backed endpoints).
 - `demo/` — a realistic small school used by the demo and tests.
 
 **Key decision (from the SRS):** Excel is an *interchange* format only. The system
@@ -69,8 +88,8 @@ multi-user editing, audit logs, versioning and multi-school SaaS on the table.
 
 | Phase | Scope | Status |
 |-------|-------|--------|
-| 1 | Excel import, generation, conflict detection, reports | **In progress (this repo)** |
-| 2 | Web dashboard, drag-and-drop editor, scoring, manual locking | Next |
+| 1 | Excel import, generation, conflict detection, reports | **Done** |
+| 2 | Persistence + versioning + REST API · web dashboard & drag-drop editor | **Backend done; UI next** |
 | 3 | Leave management, substitutions, exam scheduler, notifications | Planned |
 | 4 | AI assistant, natural-language scheduling, multi-school | Planned |
 | 5 | Full ERP (attendance, fees, library, transport, HR, apps) | Planned |
