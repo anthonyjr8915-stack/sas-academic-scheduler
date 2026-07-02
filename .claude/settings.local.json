@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(mkdir -p backend/app/core backend/app/scheduler backend/app/models backend/app/io backend/app/api backend/demo backend/tests docs)",
+      "Bash(python -m venv .venv)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet --upgrade pip)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet ortools)",
+      "Bash(./.venv/Scripts/python.exe -c \"import ortools; print\\('ortools', ortools.__version__\\)\")",
+      "Bash(./.venv/Scripts/python.exe -m demo.run_demo)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet openpyxl fastapi \"uvicorn[standard]\" pytest)",
+      "Bash(./.venv/Scripts/python.exe -m pytest -q)",
+      "Bash(./.venv/Scripts/python.exe -m pytest -q tests/test_excel.py)"
+    ]
+  }
+}

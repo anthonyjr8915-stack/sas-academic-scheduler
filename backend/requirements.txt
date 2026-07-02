@@ -1,0 +1,19 @@
+# Scheduling engine (the heart)
+ortools>=9.10
+
+# API layer
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+pydantic-settings>=2.2
+
+# Persistence
+sqlmodel>=0.0.16
+sqlalchemy>=2.0
+psycopg[binary]>=3.1        # PostgreSQL driver (SQLite used for local dev)
+
+# Excel / reports (import-export layer only, NOT the DB)
+openpyxl>=3.1
+
+# Dev / test
+pytest>=8.0
