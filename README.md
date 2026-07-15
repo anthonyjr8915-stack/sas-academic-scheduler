@@ -1,5 +1,7 @@
 # SAS — SSAPS Academic Scheduler
 
+**Live demo:** https://frontend-six-chi-ap249v5evl.vercel.app · **Repo:** https://github.com/anthonyjr8915-stack/sas-academic-scheduler
+
 AI-powered academic timetable generation, built as the scheduling core of a future
 School ERP. Given classes, teachers, subjects, labs and a rule set, it produces a
 **conflict-free, optimized** weekly timetable — or, when none exists, an explanation
@@ -96,3 +98,16 @@ multi-user editing, audit logs, versioning and multi-school SaaS on the table.
 
 Tech stack (target): Next.js + TS frontend · FastAPI + Celery + Redis backend ·
 OR-Tools CP-SAT engine · PostgreSQL · S3/R2 storage · JWT/OAuth/RBAC.
+
+## Deployment
+
+- **Frontend → Vercel.** Root Directory = `frontend`. The deployed site renders a
+  real engine-generated timetable bundled at build time, so it works with no
+  backend. Point it at a live backend by setting `NEXT_PUBLIC_API_URL` in the
+  Vercel project's Environment Variables.
+- **Backend → not Vercel.** The OR-Tools CP-SAT solver is CPU-heavy and long-running;
+  it needs a persistent host (Railway / Render / Fly.io / a VM), not Vercel's
+  serverless functions. Deploy `backend/` there and set `SAS_DATABASE_URL` to a
+  managed PostgreSQL instance.
+- **Redeploy the frontend:** `cd frontend && vercel deploy --prod` (or connect the
+  GitHub repo in the Vercel dashboard for automatic deploys on every push to `main`).
