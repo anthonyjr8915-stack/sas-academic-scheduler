@@ -1,0 +1,992 @@
+{
+  "status": "FEASIBLE",
+  "ok": true,
+  "solve_seconds": 20.495,
+  "score": 264,
+  "score_breakdown": [
+    {
+      "rule": "preferred_time",
+      "points": 216,
+      "detail": "Subjects placed in their preferred half of the day"
+    },
+    {
+      "rule": "class_teacher_first",
+      "points": 144,
+      "detail": "Class teacher takes the first period"
+    },
+    {
+      "rule": "spread_same_subject",
+      "points": -105,
+      "detail": "Penalty: same subject repeated within a day"
+    },
+    {
+      "rule": "teacher_preferred_slot",
+      "points": 30,
+      "detail": "Teachers teaching in slots they prefer"
+    },
+    {
+      "rule": "teacher_gap",
+      "points": -21,
+      "detail": "Penalty: idle gaps in a teacher's day"
+    }
+  ],
+  "diagnosis": [],
+  "placements": [
+    {
+      "lesson_id": "IX_A_Maths_0",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 1,
+      "day": 0,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Maths_1",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 16,
+      "day": 2,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Maths_2",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 14,
+      "day": 2,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Maths_3",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 7,
+      "day": 1,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Maths_4",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 21,
+      "day": 3,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Maths_5",
+      "class_id": "IX_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 28,
+      "day": 4,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Science_0",
+      "class_id": "IX_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 25,
+      "day": 3,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Science_1",
+      "class_id": "IX_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 15,
+      "day": 2,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Science_2",
+      "class_id": "IX_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 6,
+      "day": 0,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Science_3",
+      "class_id": "IX_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 9,
+      "day": 1,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Science_4",
+      "class_id": "IX_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 30,
+      "day": 4,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_SciLab_0",
+      "class_id": "IX_A",
+      "subject": "SciLab",
+      "teacher_id": "t_sci",
+      "start_slot": 33,
+      "day": 4,
+      "period": 5,
+      "length": 2,
+      "lab_kind": "science_lab"
+    },
+    {
+      "lesson_id": "IX_A_English_0",
+      "class_id": "IX_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 18,
+      "day": 2,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_English_1",
+      "class_id": "IX_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 29,
+      "day": 4,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_English_2",
+      "class_id": "IX_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 27,
+      "day": 3,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_English_3",
+      "class_id": "IX_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 4,
+      "day": 0,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_English_4",
+      "class_id": "IX_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 12,
+      "day": 1,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Social_0",
+      "class_id": "IX_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 26,
+      "day": 3,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Social_1",
+      "class_id": "IX_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 13,
+      "day": 1,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Social_2",
+      "class_id": "IX_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 20,
+      "day": 2,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Social_3",
+      "class_id": "IX_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 2,
+      "day": 0,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Social_4",
+      "class_id": "IX_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 32,
+      "day": 4,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Computer_0",
+      "class_id": "IX_A",
+      "subject": "Computer",
+      "teacher_id": "t_cs",
+      "start_slot": 22,
+      "day": 3,
+      "period": 1,
+      "length": 2,
+      "lab_kind": "computer_lab"
+    },
+    {
+      "lesson_id": "IX_A_Hindi_0",
+      "class_id": "IX_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 19,
+      "day": 2,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Hindi_1",
+      "class_id": "IX_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 5,
+      "day": 0,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Hindi_2",
+      "class_id": "IX_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 8,
+      "day": 1,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_A_Hindi_3",
+      "class_id": "IX_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 11,
+      "day": 1,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_0",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 15,
+      "day": 2,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_1",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 13,
+      "day": 1,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_2",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 2,
+      "day": 0,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_3",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 30,
+      "day": 4,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_4",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 23,
+      "day": 3,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Maths_5",
+      "class_id": "IX_B",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 9,
+      "day": 1,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Science_0",
+      "class_id": "IX_B",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 1,
+      "day": 0,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Science_1",
+      "class_id": "IX_B",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 22,
+      "day": 3,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Science_2",
+      "class_id": "IX_B",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 8,
+      "day": 1,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Science_3",
+      "class_id": "IX_B",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 29,
+      "day": 4,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Science_4",
+      "class_id": "IX_B",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 16,
+      "day": 2,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_SciLab_0",
+      "class_id": "IX_B",
+      "subject": "SciLab",
+      "teacher_id": "t_sci",
+      "start_slot": 26,
+      "day": 3,
+      "period": 5,
+      "length": 2,
+      "lab_kind": "science_lab"
+    },
+    {
+      "lesson_id": "IX_B_English_0",
+      "class_id": "IX_B",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 6,
+      "day": 0,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_English_1",
+      "class_id": "IX_B",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 14,
+      "day": 2,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_English_2",
+      "class_id": "IX_B",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 21,
+      "day": 3,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_English_3",
+      "class_id": "IX_B",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 28,
+      "day": 4,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_English_4",
+      "class_id": "IX_B",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 7,
+      "day": 1,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Social_0",
+      "class_id": "IX_B",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 11,
+      "day": 1,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Social_1",
+      "class_id": "IX_B",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 25,
+      "day": 3,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Social_2",
+      "class_id": "IX_B",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 34,
+      "day": 4,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Social_3",
+      "class_id": "IX_B",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 19,
+      "day": 2,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Social_4",
+      "class_id": "IX_B",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 5,
+      "day": 0,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Computer_0",
+      "class_id": "IX_B",
+      "subject": "Computer",
+      "teacher_id": "t_cs",
+      "start_slot": 32,
+      "day": 4,
+      "period": 4,
+      "length": 2,
+      "lab_kind": "computer_lab"
+    },
+    {
+      "lesson_id": "IX_B_Hindi_0",
+      "class_id": "IX_B",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 12,
+      "day": 1,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Hindi_1",
+      "class_id": "IX_B",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 18,
+      "day": 2,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Hindi_2",
+      "class_id": "IX_B",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 20,
+      "day": 2,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "IX_B_Hindi_3",
+      "class_id": "IX_B",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 4,
+      "day": 0,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_0",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 8,
+      "day": 1,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_1",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 34,
+      "day": 4,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_2",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 33,
+      "day": 4,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_3",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 22,
+      "day": 3,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_4",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 29,
+      "day": 4,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Maths_5",
+      "class_id": "X_A",
+      "subject": "Maths",
+      "teacher_id": "t_maths",
+      "start_slot": 6,
+      "day": 0,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Science_0",
+      "class_id": "X_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 28,
+      "day": 4,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Science_1",
+      "class_id": "X_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 21,
+      "day": 3,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Science_2",
+      "class_id": "X_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 14,
+      "day": 2,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Science_3",
+      "class_id": "X_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 7,
+      "day": 1,
+      "period": 0,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Science_4",
+      "class_id": "X_A",
+      "subject": "Science",
+      "teacher_id": "t_sci",
+      "start_slot": 2,
+      "day": 0,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_SciLab_0",
+      "class_id": "X_A",
+      "subject": "SciLab",
+      "teacher_id": "t_sci",
+      "start_slot": 19,
+      "day": 2,
+      "period": 5,
+      "length": 2,
+      "lab_kind": "science_lab"
+    },
+    {
+      "lesson_id": "X_A_English_0",
+      "class_id": "X_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 5,
+      "day": 0,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_English_1",
+      "class_id": "X_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 32,
+      "day": 4,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_English_2",
+      "class_id": "X_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 23,
+      "day": 3,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_English_3",
+      "class_id": "X_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 15,
+      "day": 2,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_English_4",
+      "class_id": "X_A",
+      "subject": "English",
+      "teacher_id": "t_eng",
+      "start_slot": 11,
+      "day": 1,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Social_0",
+      "class_id": "X_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 12,
+      "day": 1,
+      "period": 5,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Social_1",
+      "class_id": "X_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 27,
+      "day": 3,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Social_2",
+      "class_id": "X_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 18,
+      "day": 2,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Social_3",
+      "class_id": "X_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 30,
+      "day": 4,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Social_4",
+      "class_id": "X_A",
+      "subject": "Social",
+      "teacher_id": "t_soc",
+      "start_slot": 4,
+      "day": 0,
+      "period": 4,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Computer_0",
+      "class_id": "X_A",
+      "subject": "Computer",
+      "teacher_id": "t_cs",
+      "start_slot": 25,
+      "day": 3,
+      "period": 4,
+      "length": 2,
+      "lab_kind": "computer_lab"
+    },
+    {
+      "lesson_id": "X_A_Hindi_0",
+      "class_id": "X_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 1,
+      "day": 0,
+      "period": 1,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Hindi_1",
+      "class_id": "X_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 9,
+      "day": 1,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Hindi_2",
+      "class_id": "X_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 13,
+      "day": 1,
+      "period": 6,
+      "length": 1,
+      "lab_kind": null
+    },
+    {
+      "lesson_id": "X_A_Hindi_3",
+      "class_id": "X_A",
+      "subject": "Hindi",
+      "teacher_id": "t_hin",
+      "start_slot": 16,
+      "day": 2,
+      "period": 2,
+      "length": 1,
+      "lab_kind": null
+    }
+  ],
+  "grid": {
+    "days": [
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri"
+    ],
+    "periods_per_day": 7
+  },
+  "classes": [
+    {
+      "id": "IX_A",
+      "name": "IX-A"
+    },
+    {
+      "id": "IX_B",
+      "name": "IX-B"
+    },
+    {
+      "id": "X_A",
+      "name": "X-A"
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t_maths",
+      "name": "Rao (Maths)"
+    },
+    {
+      "id": "t_sci",
+      "name": "Iyer (Science)"
+    },
+    {
+      "id": "t_eng",
+      "name": "Khan (English)"
+    },
+    {
+      "id": "t_soc",
+      "name": "Das (Social)"
+    },
+    {
+      "id": "t_cs",
+      "name": "Nair (Computer)"
+    },
+    {
+      "id": "t_hin",
+      "name": "Verma (Hindi)"
+    }
+  ],
+  "global_blocked_slots": [
+    0,
+    3,
+    10,
+    17,
+    24,
+    31
+  ],
+  "version": {
+    "label": "demo",
+    "status": "published",
+    "seed": 42,
+    "solver_status": "FEASIBLE",
+    "score": 264
+  }
+}

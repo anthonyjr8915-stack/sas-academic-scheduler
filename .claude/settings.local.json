@@ -17,7 +17,24 @@
       "Bash(mkdir -p app/services app/db)",
       "Bash(./.venv/Scripts/python.exe -m pytest -q tests/test_persistence.py)",
       "Bash(./.venv/Scripts/python.exe -m pip install --quiet httpx)",
-      "Bash(./.venv/Scripts/python.exe -c ' *)"
+      "Bash(./.venv/Scripts/python.exe -c ' *)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(vercel --version)",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(node node_modules/next/dist/bin/next build)",
+      "Bash(rm -rf /c/Users/ccs/AppData/Local/Temp/sas_build)",
+      "Bash(mkdir -p /c/Users/ccs/AppData/Local/Temp/sas_build)",
+      "Bash(cp -r app components lib data package.json tsconfig.json next.config.mjs postcss.config.mjs tailwind.config.ts .gitignore /c/Users/ccs/AppData/Local/Temp/sas_build/)",
+      "Bash(cp -r node_modules /c/Users/ccs/AppData/Local/Temp/sas_build/)",
+      "Read(//c/Users/ccs/AppData/Local/Temp/**)",
+      "Bash([ ! -d \"$BUILD/node_modules/next\" ])",
+      "Read(//c/Users/ccs/AppData/Local/Temp/sas_build/**)",
+      "Bash(rm -rf \"/c/Users/ccs/AppData/Local/Temp/sas_build\")",
+      "Bash(git add *)",
+      "Bash(git -c user.name=Claude -c user.email=noreply@anthropic.com commit -q -m ' *)"
     ]
   }
 }
