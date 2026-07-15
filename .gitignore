@@ -20,3 +20,6 @@ backend/*.db
 Thumbs.db
 .idea/
 .vscode/
+
+# Claude Code local settings (may capture command history)
+.claude/settings.local.json
